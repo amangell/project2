@@ -15,7 +15,7 @@ const ForecastPage = () => {
 
             try {
                 const response = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=316bdc113227caa67cd8fd70415b0411&units=imperial`
+                    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c9f0ce18a5733b4ae233d9e3a21a5669&units=imperial`
                 );
                 if (!response.ok) {
                     throw new Error('City not found');

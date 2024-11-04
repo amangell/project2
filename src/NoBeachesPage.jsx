@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './NoBeaches.css';
+import './NoBeaches.css'
 
 const NoBeaches = () => {
     const [audio] = useState(new Audio('/Vine Boom Sound Effect.mp3'));
