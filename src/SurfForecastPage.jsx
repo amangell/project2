@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SurfForecastPage = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const { latitude, longitude } = location.state || {};
     const [surfData, setSurfData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -27,7 +28,11 @@ const SurfForecastPage = () => {
                     throw new Error('Surf forecast data not available');
                 }
                 const data = await response.json();
-                setSurfData(data.current);
+                if (!data.current.wave_height) {
+                    navigate('/no-beaches');
+                } else {
+                    setSurfData(data.current);
+                }
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -36,7 +41,7 @@ const SurfForecastPage = () => {
         };
 
         fetchSurfForecast();
-    }, [latitude, longitude]);
+    }, [latitude, longitude, navigate]);
 
     if (loading) return <p>Loading surf forecast...</p>;
     if (error) return <p>Error: {error}</p>;
@@ -56,3 +61,4 @@ const SurfForecastPage = () => {
 };
 
 export default SurfForecastPage;
+
