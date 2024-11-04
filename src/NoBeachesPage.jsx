@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import './NoBeaches.css';
 
-const NoBeachesPage = () => {
+const NoBeaches = () => {
+    const [audio] = useState(new Audio('/Vine Boom Sound Effect.mp3'));
+
+    const playSound = () => {
+        audio.play().catch((error) => {
+            console.error('Error playing audio:', error);
+        });
+    };
+
+    useEffect(() => {
+        playSound(); // Need to remove this if it breaks something
+    }, [audio]);
+
     return (
-        <div style={{ textAlign: 'center', padding: '20px' }}>
-            <h1>No Beaches?</h1>
-            <p>It seems there are no surfable waves at this location.</p>
+        <div className="no-beaches-container">
+            <h1 className="no-beaches-text">No Beaches?</h1>
+            <button className="small-button" onClick={playSound}>
+                Play Sound
+            </button>
         </div>
     );
 };
 
-export default NoBeachesPage;
+export default NoBeaches;
+
+
+
+
+

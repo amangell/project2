@@ -32,6 +32,10 @@ const ForecastPage = () => {
         fetchWeather();
     }, [city]);
 
+    const handleGoBack = () => {
+        navigate(-1);
+    };
+
     const handleSurfForecast = () => {
         if (weatherData && weatherData.coord) {
             navigate(`/forecast/${city}/surf`, {
@@ -62,6 +66,9 @@ const ForecastPage = () => {
                     </button>
                 </div>
             )}
+                        <button onClick={handleGoBack} style={{ marginTop: '20px' }}>
+                Go Back
+            </button>
         </div>
     );
 };

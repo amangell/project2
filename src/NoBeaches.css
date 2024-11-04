@@ -1,0 +1,32 @@
+.no-beaches-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('/no_beach.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    position: relative;
+}
+
+.no-beaches-text {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.small-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 25px;
+    font-size: 12px;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+

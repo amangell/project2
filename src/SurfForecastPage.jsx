@@ -43,6 +43,10 @@ const SurfForecastPage = () => {
         fetchSurfForecast();
     }, [latitude, longitude, navigate]);
 
+    const handleGoBack = () => {
+        navigate(-1);
+    };
+
     if (loading) return <p>Loading surf forecast...</p>;
     if (error) return <p>Error: {error}</p>;
 
@@ -56,6 +60,9 @@ const SurfForecastPage = () => {
                     <p>Wave Period: {surfData.wave_period} seconds</p>
                 </div>
             )}
+                        <button onClick={handleGoBack} style={{ marginTop: '20px' }}>
+                Go Back
+            </button>
         </div>
     );
 };

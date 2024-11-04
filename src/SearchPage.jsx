@@ -13,7 +13,8 @@ const SearchPage = () => {
 
     return (
         <div style={{ textAlign: 'center', padding: '20px' }}>
-            <h1>Weather Search</h1>
+            <h1>Welcome to Better Surfline</h1>
+            <h5>Providing useful information since last week</h5>
             <input
                 type="text"
                 value={city}
