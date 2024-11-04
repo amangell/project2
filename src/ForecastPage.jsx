@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const ForecastPage = () => {
     const { city } = useParams();
     const [weatherData, setWeatherData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchWeather = async () => {
@@ -31,6 +32,17 @@ const ForecastPage = () => {
         fetchWeather();
     }, [city]);
 
+    const handleSurfForecast = () => {
+        if (weatherData && weatherData.coord) {
+            navigate(`/forecast/${city}/surf`, {
+                state: {
+                    latitude: weatherData.coord.lat,
+                    longitude: weatherData.coord.lon
+                }
+            });
+        }
+    };
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
 
@@ -45,6 +57,9 @@ const ForecastPage = () => {
                     <p>Wind Speed: {weatherData.wind.speed} mph</p>
                     <p>Wind Gust: {weatherData.wind.gust || 'N/A'} mph</p>
                     <p>Wind Direction: {weatherData.wind.deg}°</p>
+                    <button onClick={handleSurfForecast} style={{ marginTop: '15px' }}>
+                        View Surf Forecast
+                    </button>
                 </div>
             )}
         </div>
@@ -52,5 +67,4 @@ const ForecastPage = () => {
 };
 
 export default ForecastPage;
-
 
